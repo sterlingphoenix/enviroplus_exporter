@@ -14,6 +14,8 @@ This also doesn't use the screen on the hat at all.
 
 I _think_ this should work with the regular Enviro (rather than Enviro+) HAT, but I have not tested this. 
 
+Relevant metrics are exposed using the `enviroplus_` prefix. 
+
 ## Requirements
 
 1. Obviously, the [HAT](https://shop.pimoroni.com/products/enviro).
