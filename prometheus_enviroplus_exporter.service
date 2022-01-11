@@ -1,0 +1,10 @@
+[Unit]
+Description=Prometheus Enviro+ Exporter
+After=network.target
+
+[Service]
+User=pi
+ExecStart=/usr/local/bin/prometheus_enviroplus_exporter.py
+
+[Install]
+WantedBy=multi-user.target
