@@ -36,7 +36,7 @@ This assumes you'll be using the default 'pi' user.
 
 Run the program manually using ```/usr/local/bin/prometheus_enviroplus_exporter.py```. If you don't see any errors, congratulations! It's probably working!
 
-By default, the exporter listens on port 9155, so ```curl localhost:9155/metrics``` should show the metrics. 
+By default, the exporter listens on port 9892, so ```curl localhost:9892/metrics``` should show the metrics. 
 
 ## systemd
 
@@ -49,7 +49,7 @@ This is dependent on your own setup, but I create a JSON file in wherever Promet
 ```
 [
   {
-    "targets": [ "<ip address>:9155" ],
+    "targets": [ "<ip address>:9892" ],
     "labels": {
       "hostname": "<hostname>",
       "location": "<location>"
