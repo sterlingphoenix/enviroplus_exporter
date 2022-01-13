@@ -23,7 +23,7 @@ ltr559 = LTR559()
 # Noise sensor
 noise = Noise()
 
-port = 9155
+port = 9892
 
 TEMP = Gauge('enviroplus_temperature', 'Current temperature in C')
 PRESSURE = Gauge('enviroplus_pressure', 'Barometric pressure in hPa')
