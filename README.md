@@ -29,18 +29,18 @@ This assumes you'll be using the default 'pi' user.
 
 1. Set up Raspberry PI with the latest 'lite' version of Raspberry PI OS.
 2. Follow the instructions to installing the Pimoroni libraries [here](https://github.com/pimoroni/enviroplus-python/).
-3. Install the Prometheus client python library using ```python3 -m pip install prometheus-client```
-4. Download ```prometheus_enviroplus_exporter.py``` and put it in ```/usr/local/bin/```. Make sure it is executable.
+3. Install the Prometheus client python library using `python3 -m pip install prometheus-client` (you might need to `sudo apt-get install python3-pip` first). 
+4. Download `prometheus_enviroplus_exporter.py` and put it in `/usr/local/bin/`. Make sure it is executable.
 
 ## Test
 
-Run the program manually using ```/usr/local/bin/prometheus_enviroplus_exporter.py```. If you don't see any errors, congratulations! It's probably working!
+Run the program manually using `/usr/local/bin/prometheus_enviroplus_exporter.py`. If you don't see any errors, congratulations! It's probably working!
 
-By default, the exporter listens on port 9892, so ```curl localhost:9892/metrics``` should show the metrics. 
+By default, the exporter listens on port 9892, so `curl localhost:9892/metrics` should show the metrics. 
 
 ## systemd
 
-To get the thing to start automatically, download ```prometheus_enviroplus_exporter.service``` and place it in ```/etc/systemd/system/```. Then run ```sudo systemctl enable prometheus_enviroplus_exporter.service```. 
+To get the thing to start automatically, download `prometheus_enviroplus_exporter.service` and place it in `/etc/systemd/system/`. Then run `sudo systemctl enable prometheus_enviroplus_exporter.service`. 
 
 ## Prometheus Configuration
 
