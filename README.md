@@ -12,9 +12,7 @@ The other sensors _do_ work. However, I've been unable to find any information (
 
 This also doesn't use the screen on the hat at all. 
 
-I _think_ this should work with the regular Enviro (rather than Enviro+) HAT, but I have not tested this. 
-
-Relevant metrics are exposed using the `enviroplus_` prefix. 
+Relevant metrics are exposed using the `enviroplus_` prefix. It does work on the regular Enviro (which does not have the gas sensors), despite the prefix having `plus` in it. 
 
 ## Requirements
 
