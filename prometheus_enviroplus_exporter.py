@@ -4,7 +4,6 @@ import time
 import os
 from prometheus_client import start_http_server, Gauge, Enum
 import requests
-#from pms5003 import PMS5003, ReadTimeoutError as pmsReadTimeoutError, SerialTimeoutError
 from bme280 import BME280
 from enviroplus import gas
 from enviroplus.noise import Noise
@@ -25,14 +24,22 @@ noise = Noise()
 
 port = 9892
 
+# Check to see if gas sensor is present. 
+try:
+  test = gas.read_oxidising()
+except:
+  nogas=1
+
+# Prometheus metrics
 TEMP = Gauge('enviroplus_temperature', 'Current temperature in C')
 PRESSURE = Gauge('enviroplus_pressure', 'Barometric pressure in hPa')
 HUMIDITY = Gauge('enviroplus_humidity', 'Current humidity %')
 LIGHT = Gauge('enviroplus_light', 'Light level in lux')
 PROX = Gauge('enviroplus_proximity', 'Proximity')
-OXIDISED = Gauge('enviroplus_oxidised', 'Oxidisation in kO')
-REDUCED  = Gauge('enviroplus_reduced', 'Reduced gas in KO')
-NH3 = Gauge('enviroplus_nh3', 'NH3 level in kO')
+if (nogas != 1):
+    OXIDISED = Gauge('enviroplus_oxidised', 'Oxidisation in kO')
+    REDUCED  = Gauge('enviroplus_reduced', 'Reduced gas in KO')
+    NH3 = Gauge('enviroplus_nh3', 'NH3 level in kO')
 NOISE_L = Gauge('enviroplus_noise_l', 'Low-Frequency Noise Level in db(?)')
 NOISE_M = Gauge('enviroplus_noise_m', 'Mid-Frequency Noise Level in db(?)')
 NOISE_H = Gauge('enviroplus_noise_h', 'High-Frequency Noise Level in db(?)')
@@ -48,9 +55,10 @@ if __name__ == '__main__':
         PROX.set(ltr559.get_proximity())
         PRESSURE.set(bme280.get_pressure())
         HUMIDITY.set(bme280.get_humidity())
-        OXIDISED.set(gas.read_oxidising())
-        REDUCED.set(gas.read_reducing())
-        NH3.set(gas.read_nh3())
+        if (nogas != 1):
+            OXIDISED.set(gas.read_oxidising())
+            REDUCED.set(gas.read_reducing())
+            NH3.set(gas.read_nh3())
         low, mid, high, amp = noise.get_noise_profile()
         NOISE_L.set(low)
         NOISE_M.set(mid)
